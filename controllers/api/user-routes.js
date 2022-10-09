@@ -148,7 +148,9 @@ router.delete('/:id', (req, res) => {
 router.post('/signup', (req, res) => {
     User.create({
       where: {
-        username: req.body.username
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
       }
     })
     .then(dbUserData => {
