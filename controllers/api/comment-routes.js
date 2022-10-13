@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-  //Check for a session
   if (req.session) {
     Comment.create({
       comment_text: req.body.comment_text,      

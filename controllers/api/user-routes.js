@@ -147,28 +147,18 @@ router.delete('/:id', (req, res) => {
 
 router.post('/signup', (req, res) => {
     User.create({
-      where: {
+     
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
-      }
+      
     })
     .then(dbUserData => {
-      //verify user
-      if(!dbUserData) {
-        res.status(400).json({ message: 'Username not Found' });
-        return;
-      }
-      const validPassword = dbUserData.checkPassword(req.body.password);
-      if (!validPassword) {
-        res.status(400).json({ message: 'Incorrect Password' });
-        return;
-      }
+    
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-        res.json({user: dbUserData, message: 'You are now logged in!' });
+        res.json({user: dbUserData, message: 'You are now signed up' });
       });
     });
   });
