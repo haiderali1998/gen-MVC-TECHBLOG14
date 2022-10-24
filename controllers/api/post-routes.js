@@ -38,14 +38,14 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: User,
-        attributes: ['username']
+        attributes: {exclude: ["password"]}
       },
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['username']
+          attributes: {exclude: ["password"]}
         }
       }
     ]
@@ -63,13 +63,14 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', withAuth, (req, res) => {  
+router.post('/create', withAuth, (req, res) => {  
+  console.log("body:", req.body);
   Post.create({
     title: req.body.title,
-    post_text: req.body.post_text,
+    body: req.body.body,
     user_id: req.session.user_id
   })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => res.status(201).json(dbPostData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);

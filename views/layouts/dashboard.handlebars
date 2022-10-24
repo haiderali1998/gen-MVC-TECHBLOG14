@@ -1,3 +1,12 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVC Tech Blog</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
     <div class="mb-5 pt-3">
         <a href="/dashboard/create/"><button id="create-post" class="button is-primary is-pulled-right">create post</button></a>
         
@@ -6,7 +15,7 @@
     </div>
 
     {{#each posts as |post|}}
-        {{> post-info post}}
+        {{> post-info}}
         
             <a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">edit post</button></a>
         </div>
@@ -16,4 +25,20 @@
 <h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
 
 {{/if}}
+ {{{ body }}}
+   <header>
+      <div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
+          {{#if loggedIn}}
+          <a href="/" id="logout">Logout</a>
+          {{else}}
+          {{/if}}
+        </nav>
+      </div>
+    </header>
 
+</body>
+
+</html>
