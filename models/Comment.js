@@ -35,7 +35,8 @@ Comment.init(
 
     },
     {
-        sequelize
+        sequelize,
+        timestamps: true
     }
 )
 
