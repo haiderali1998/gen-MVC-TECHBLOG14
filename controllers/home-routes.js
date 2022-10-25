@@ -53,8 +53,8 @@ router.get('/post/:id', (req, res) => {
         attributes: [
           'id',
           'comment',
-          'postId',
-          'userId',
+          'post_id',
+          'user_id',
           'createdAt'
         ],
         include: {
